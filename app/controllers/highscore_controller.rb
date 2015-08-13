@@ -1,3 +1,6 @@
+before "/highscores/*" do
+  redirect "/login" unless session[:user_id]
+end
 
 get '/highscores/global' do
   global = {}
