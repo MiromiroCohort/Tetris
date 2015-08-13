@@ -1,3 +1,6 @@
+before "/help" do
+  redirect "/login" unless session[:user_id]
+end
 
 get "/help" do
   helptext = ["Welcome to Tetris", "Use the arrow keys to rotate the falling block", "Press space bar to quickly drop the block", "Press play to play!"]
