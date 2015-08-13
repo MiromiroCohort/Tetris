@@ -1,0 +1,59 @@
+html {
+  background: -webkit-linear-gradient(top, #040f1c, #132132, #040f1c) no-repeat;
+  background: -o-linear-gradient(top, #040f1c, #132132, #040f1c) no-repeat; /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(top, #040f1c, #132132, #040f1c) no-repeat; /* For Firefox 3.6 to 15 */
+  background: linear-gradient(top, #040f1c, #132132, #040f1c) no-repeat; /* Standard syntax */
+
+}
+
+body {
+ 
+}
+
+
+.masthead {
+  font-size: 4vw;
+  width: 100%;
+  font-family: Arial, sans-serif;
+  text-decoration: none; 
+  text-shadow: 1px 1px 1px #B20808; 
+  text-decoration: none;
+  margin: 0;
+  padding: .5em 0;
+  background: -webkit-linear-gradient(center, #040f1c, #2B3746) no-repeat;
+  background: -o-linear-gradient(center, #040f1c, #2B3746) no-repeat; /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(center, #040f1c, #2B3746) no-repeat; /* For Firefox 3.6 to 15 */
+  background: linear-gradient(center, #040f1c, #2B3746) no-repeat; /* Standard syntax */
+}
+
+
+.centered-text {
+  font-size: 3vw;
+  color:#F1F2F7;
+  max-width: 80%;
+  margin: 0 auto;
+
+}
+
+.help {
+  text-align: justify;
+
+}
+
+.gameboard {
+  margin: 0 auto;
+  max-width: 80%;
+  background: -webkit-linear-gradient(top, #001D55, #132132) no-repeat;
+  background: -o-linear-gradient(top, #001D55, #132132) no-repeat; /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(top, #001D55, #132132) no-repeat; /* For Firefox 3.6 to 15 */
+  background: linear-gradient(top, #001D55, #132132) no-repeat; /* Standard syntax */
+
+
+
+
+
+  border: solid 8px black;
+  height: 100%;
+  overflow: hidden;
+
+}
