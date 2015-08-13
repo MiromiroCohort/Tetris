@@ -10,67 +10,78 @@ body {
   height: 80vh;
 }
 
+.container {
+  margin-left: 10%;
+}
+
 .row {
-  width: 100%;
+  width: 95%;
   display: block;
+  line-height: 0px;
   padding: 0px;
   border: 0px;
-  margin: 0 auto;
+  margin:0px;outline:none;
+  vertical-align: top;
+  font-size:0px;
 }
 
 #row-24, #row-23, #row-22, #row-21 {
-  height: 2.25%;
+  height: 20px;
+  visibility: hidden;
 }
 
 div {
   box-sizing: border-box;
+  clear:none;
 }
 
+
 .cell {
-  width:9%;
+  width:09%;
+  /*border: solid 1px black;*/*/
+  border: 0;
   display: inline-block;
-/*  border: solid black 1px;*/
-  padding: 1em;
-  margin: 0 auto 0 auto;
+  padding: .9em;
+  margin:0px;outline:none;
+  vertical-align: top;
+  border-spacing: 0;
+  font-size:16px;
+  line-height:14px;
 }
 
 .cell.red {
-  background-image: url("../img/red.png");
+  background-image: url("../img/iconset2/red.png");
   background-size: cover;
 }
 
 .cell.orange{
-  background-image: url("../img/orange.png");
+  background-image: url("../img/iconset2/orange.png");
   background-size: cover;  
 }
 
 .cell.blue {
- background-image: url("../img/blue.png");
+ background-image: url("../img/iconset2/blue.png");
   background-size: cover;   
 }
 
 .cell.aqua {
- background-image: url("../img/aqua.png");
+ background-image: url("../img/iconset2/aqua.png");
   background-size: cover;   
 }
 
 .cell.purple {
- background-image: url("../img/purple.png");
+ background-image: url("../img/iconset2/purple.png");
   background-size: cover;   
 }
 .cell.green {
- background-image: url("../img/green.png");
+ background-image: url("../img/iconset2/green.png");
   background-size: cover;   
 }
 .cell.white {
- background-image: url("../img/white.png");
+ background-image: url("../img/iconset2/white.png");
   background-size: cover;   
 }
 
-
-#row-20{
-  border-top: solid 5px black;
-}
 
 
 .masthead {
@@ -123,5 +134,5 @@ div {
   border: solid 15px black;
   height: 100%;
   overflow: hidden;
-
+  font-size:0px;
 }
