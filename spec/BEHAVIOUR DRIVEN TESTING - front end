@@ -1,0 +1,26 @@
+BEHAVIOUR DRIVEN TESTING
+
+Login
+
+An existing user can login to the application and be passed on to the high score screen
+
+A new user can sign up for an account and be passed through to the high score screen.
+
+
+High Scores
+
+The page should request and interpret a list of 'best' scores from the database for All Users
+The page should request and interpret a list of 'best' scores for this user.
+The page should request and interpret the RANK of this user's best score.
+
+The page should render the two lists - highest score to the top and display the rank of this user.
+
+
+Help
+
+The page should provide game play directions.
+
+
+Board page
+
+
