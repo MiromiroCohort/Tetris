@@ -1,4 +1,4 @@
-describe("help screen", function(){
+describe("Scores", function(){
 
   // beforeEach(function() {
   //     jasmine.Ajax.install();
@@ -38,5 +38,6 @@ describe("help screen", function(){
   // it("should receive a JSON object", function(){
   //   $.httpBackend.expectGET('/help').respond(Object Literal)
   // })
+
 
 });
