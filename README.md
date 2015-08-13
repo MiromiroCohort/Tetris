@@ -131,7 +131,7 @@ Stretch MUSIC?
 
 ###[POST] create a new user
 - allows someone to create a new user, requires name, email, digest
-- /api/v1/user/
+- /user/
 - example:
 ```
 [{
