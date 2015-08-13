@@ -78,7 +78,7 @@ Stretch MUSIC?
 
 ###[GET] list of Highest scores
 - returns a list of top 10 high scores and users
-- /api/v1/highscore/
+- /highscores/global
 - example:
 ```
 [{
@@ -96,11 +96,11 @@ Stretch MUSIC?
 
 ###[GET] list of users high scores
 - returns a list of the top 10 high score of a user
-- /api/v1/user/:id/highscore/
+- /highscores/user
 - example:
 ```
 [{
-  "your_high_scores":
+  "user_high":
     [{
       "rank" : 6
       "name" : "Michael",
@@ -110,13 +110,36 @@ Stretch MUSIC?
       "rank" : 2
       "name" : "Michael",
       "score" : 2090
-    }],
-  "your_latest":
-    [{
-      "score" : 1000
     }]
 }]
 ```
+
+###[GET] user rank
+- returns a list of the top 10 high score of a user
+- /highscores/user/rank
+- example:
+```
+[{
+  "user_rank":
+    [{
+      "rank" : 6
+    },
+}]
+```
+
+###[GET] user latest score
+- returns a list of the top 10 high score of a user
+- /highscores/user/latest
+- example:
+```
+[{
+  "user_latest":
+    [{
+      "score" : 1000
+    },
+}]
+```
+
 
 ###[POST] create a new score
 - allows the user to create a new score, new score requires score and user id
@@ -131,7 +154,7 @@ Stretch MUSIC?
 
 ###[POST] create a new user
 - allows someone to create a new user, requires name, email, digest
-- /api/v1/user/
+- /user/
 - example:
 ```
 [{
