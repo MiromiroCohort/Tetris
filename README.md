@@ -141,23 +141,6 @@ Stretch MUSIC?
 }]
 ```
 
-###[POST] create a new session
-- allows user to create a new session on login
-- /api/v1/session/
-- example:
-```
-[{
-  "session_cookie" : "seghve%^ksuycrpq34b87o(ey52np3894"
-}]
-```
-
-###[DELETE] destroy user session
-- allows user to end their current session
-- /api/v1/session/
-- example:
-```
-[{}]
-```
 
 
 ## PSEUDOCODE for game mechanics
