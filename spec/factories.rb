@@ -12,7 +12,4 @@ FactoryGirl.define  do
     score {Faker::Number.number(2)}
     user
   end
-
-
-
 end
