@@ -41,6 +41,11 @@ get '/highscores/user/latest' do
   user_latest.to_json
 end
 
+post '/score' do
+  # user = User.find(session[:user_id]) #FOR ACTUAL PURPOSES
+  score = params[:score]
+  Score.create(user, score)
+end
 
 
 
