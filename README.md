@@ -1,6 +1,6 @@
 # Tetris
 
-Front End Documentation
+## Front End Documentation
 
 ==============
 Stretch MUSIC?
@@ -30,7 +30,7 @@ Stretch MUSIC?
 		SCORE banner shows 'next piece' and 'current score'
 
 
-Game Play
+### Game Play
 
 	The game ends when a block cannot descend below row 21.
 
@@ -72,80 +72,98 @@ Game Play
 	The speed of game play increases as time elapses.
 
 
-API DOCUMENTATION - V.0.1
+#API DOCUMENTATION - V.0.1
 
-DISPLAY LOGIN
-Resource URL: /
-GET "/" do
-  erb :index
-end
+## Routes
 
-DISPLAY HELP MENU
-Resource URL: /help/
-GET "/help" do
-  erb :help
-end
+###[GET] list of Highest scores
+- returns a list of top 10 high scores and users
+- /api/v1/highscore/
+- example:
+```
+[{
+  "global":
+    [{
+      "name" : "Michael",
+      "score" : 1000
+    },
+    {
+      "name" : "Iona",
+      "score" : 2090
+    }]
+}]
+```
 
-DISPLAY GAME
-Resource URL: /blocks/
-Parameters : User.id
-GET "/blocks" do
-  :erb blocks
-end
+###[GET] list of users high scores
+- returns a list of the top 10 high score of a user
+- /api/v1/user/:id/highscore/
+- example:
+```
+[{
+  "your_high_scores":
+    [{
+      "rank" : 6
+      "name" : "Michael",
+      "score" : 1000
+    },
+    {
+      "rank" : 2
+      "name" : "Michael",
+      "score" : 2090
+    }],
+  "your_latest":
+    [{
+      "score" : 1000
+    }]
+}]
+```
 
-LIST OF ALL HIGHSCORES Summary: Returns top 10 highscores
-Resource URL: /highscore/
-Parameters: Score.all
-GET "/highscore" do
-  Score.all(select top ten)
-  :erb highscore
-end
+###[POST] create a new score
+- allows the user to create a new score, new score requires score and user id
+- /api/v1/user/:id/score/
+- example:
+```
+[{
+  "user_id" : 13,
+  "score" : 4684
+}]
+```
 
-LIST OF USER'S HIGHSCORES Summary: Returns top 10 highscores of user
-Resource URL: /user/:id/highscore/
-Parameters: Score.find_by(user.id)
-GET "/user/:id/highscore" do
-  Score.find_by(user.id) (select top ten)
-  :erb highscore
-end
+###[POST] create a new user
+- allows someone to create a new user, requires name, email, digest
+- /api/v1/user/
+- example:
+```
+[{
+  "name" : "Bob Dylan",
+  "email" : "name@email.com",
+  "digest" : "password"
+}]
+```
 
-ADD NEW USER Summary: Adds user to database
-Resource URL: /user/
-Parameters: user.name, user.email, user.digest
-POST "/user" do
-  redirect "/highscores"
-end
+###[POST] create a new session
+- allows user to create a new session on login
+- /api/v1/session/
+- example:
+```
+[{
+  "session_cookie" : "seghve%^ksuycrpq34b87o(ey52np3894"
+}]
+```
 
-ADD NEW SCORE
-Resource URL: /score/
-Parameters: user.id, score
-POST "/score" do
-  redirect "/highscores"
-end
-
-ADD NEW SESSION
-Resource URL: /session/
-Parameters: user.email, user.digest
-POST "/session" do
-  if logged in
-    redirect "/highscore"
-  else
-    redirect "/"
-  end
-end
-
-END SESSION
-Resource URL: /session/
-Parameters: session.id
-DELETE "/session" do
-  redirect "/"
-end
+###[DELETE] destroy user session
+- allows user to end their current session
+- /api/v1/session/
+- example:
+```
+[{}]
+```
 
 ## For all controllers
 Add "before" blocks, to check the user is logged in before going to other pages
 
-######################################################
- PSEUDOCODE for game mechanics
+
+## PSEUDOCODE for game mechanics
   0. GAME BOARD REPRESENT ITSELF in ARRAY of 20*10(maybe other suitable scale),
   each element of ARRAY corresponds to HTML DIV and save information about current state
   (is there any block inside at the moment, and what color is this block).
