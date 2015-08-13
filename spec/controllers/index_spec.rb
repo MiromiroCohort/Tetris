@@ -32,19 +32,19 @@ end
 
 
 describe 'GET /highscore' do
-before do
-  5.times do
-  @user = FactoryGirl.create :user
-rand(6).times{
-  @score = FactoryGirl.create :score, :user => @user
-}
+  before do
+    5.times do
+      @user = FactoryGirl.create :user
+      rand(6).times{
+        @score = FactoryGirl.create :score, :user => @user
+      }
+    end
+    get "/highscore"
   end
-  get "/highscore"
 
-
-end
-
-
+  it "should return all high scores" do
+    expect (last_response.body).to eq(Score.all.sort.first(10).to_json)
+  end
 
 
 end

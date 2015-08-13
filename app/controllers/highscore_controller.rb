@@ -6,4 +6,6 @@ get "user/:user_id/highscore" do
 
 end
 
-
+get "/highscore" do
+  Score.all.sort.first(10).to_json
+end
