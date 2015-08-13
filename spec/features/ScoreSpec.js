@@ -1,5 +1,12 @@
 describe("Scores", function(){
 
+  beforeEach(function() {
+    addNewScore(50);
+  })
+
+  it("outputs JSON", function(){
+    expect(latestScoreReceiver).toEqual(50);
+  })
   // beforeEach(function() {
   //     jasmine.Ajax.install();
   //   });
