@@ -1,12 +1,23 @@
 describe("Scores", function(){
 
-  beforeEach(function() {
-    addNewScore(50);
+  it("is a string", function(){
+    expect(testVar).toEqual("a string");
   })
 
-  it("outputs JSON", function(){
-    expect(latestScoreReceiver).toEqual(50);
+  describe("addNewScore", function(){
+
+    it("is defined", function(){
+      expect(addNewScore(50)).toBe()
+    })
+
   })
+  // beforeEach(function() {
+  //   addNewScore(50);
+  // })
+
+  // it("outputs JSON", function(){
+  //   expect(latestScoreReceiver).toEqual(50);
+  // })
   // beforeEach(function() {
   //     jasmine.Ajax.install();
   //   });

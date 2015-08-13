@@ -1,4 +1,6 @@
-$(document).ready(function() {
+// $(document).ready(function() {
+
+  var testVar = "a string"
 
   var addNewScore = function(score){
     $.ajax({
@@ -37,4 +39,4 @@ $(document).ready(function() {
       }
     })
   }
-});
+// });
