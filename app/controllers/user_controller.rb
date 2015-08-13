@@ -1,4 +1,4 @@
-post "/users" do
+post "/user" do
   user = User.create(name: params[:name],
                       email: params[:email],
                       digest: params[:digest])
