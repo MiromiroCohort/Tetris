@@ -10,6 +10,29 @@ body {
  
 }
 
+.row {
+  width: 100%;
+  display: block;
+  border: solid 4px black;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.cell {
+  width: 10%;
+  display: inline-block;
+  border: solid 5px white;
+}
+
+#row-21-cell-6 {
+  border: solid 2px white;
+}
+#row-21-cell-7 {
+  border: solid 2px white;
+}
+
 
 .masthead {
   font-size: 4vw;
