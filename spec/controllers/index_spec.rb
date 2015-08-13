@@ -1,6 +1,14 @@
 require 'spec_helper'
 require_relative '../factories.rb'
 
+
+before do
+  User.all.destroy
+  Score.all.destroy
+end
+
+puts.User.all
+
 describe "GET / blocks" do
   before do
     get "/blocks"
@@ -23,7 +31,25 @@ describe "GET /help" do
 end
 
 
-describe "GET / highscore" do
+describe 'GET /highscore' do
+before do
+  5.times do
+  @user = FactoryGirl.create :user
+rand(6).times{
+  @score = FactoryGirl.create :score, :user => @user
+}
+  end
+  get "/highscore"
+
+
+end
+
+
+
+
+end
+
+describe "GET user/:id/highscore" do
   before do
     @user = FactoryGirl.create :user
     rand(6).times{
@@ -38,3 +64,4 @@ describe "GET / highscore" do
     expect (last_response.body). to eq(User.scores.sort.first)
   end
 end
+
