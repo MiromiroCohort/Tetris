@@ -37,8 +37,8 @@ end
 
 get '/highscores/user/latest' do
     # user = User.find(session[:user_id]) #FOR ACTUAL PURPOSES
-  user = User.find(4) #FOR TESTING PURPOSES ONLY
-  latest_score = user.scores.last.to_json
+  user = User.find(1305) #FOR TESTING PURPOSES ONLY
+  latest_score = user.scores.last
   user_latest = {user_latest: latest_score}
   user_latest.to_json
 end
