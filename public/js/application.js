@@ -19,35 +19,35 @@ $(document).ready(function() {
         $("#row-"+(row)+"-cell-"+(col+1)).addClass(colour)
         $("#row-"+(row-1)+"-cell-"+(col+1)).addClass(colour)
         $("#row-"+(row-2)+"-cell-"+(col+1)).addClass(colour)
-        $("#row-"+(row-3)+"-cell-"+(col+1)).addClass(colour)      
+        $("#row-"+(row-3)+"-cell-"+(col+1)).addClass(colour)
           break;
       case 't':
         $("#row-"+(row)+"-cell-"+(col)).addClass(colour)
         $("#row-"+(row)+"-cell-"+(col+1)).addClass(colour)
         $("#row-"+(row)+"-cell-"+(col+2)).addClass(colour)
-        $("#row-"+(row-1)+"-cell-"+(col+1)).addClass(colour)      
+        $("#row-"+(row-1)+"-cell-"+(col+1)).addClass(colour)
           break;
       case 'l':
         $("#row-"+(row)+"-cell-"+(col)).addClass(colour)
         $("#row-"+(row-1)+"-cell-"+(col)).addClass(colour)
         $("#row-"+(row-2)+"-cell-"+(col)).addClass(colour)
-        $("#row-"+(row-2)+"-cell-"+(col+1)).addClass(colour)      
+        $("#row-"+(row-2)+"-cell-"+(col+1)).addClass(colour)
           break;
       case 'j':
         $("#row-"+(row)+"-cell-"+(col+1)).addClass(colour)
         $("#row-"+(row-1)+"-cell-"+(col+1)).addClass(colour)
         $("#row-"+(row-2)+"-cell-"+(col+1)).addClass(colour)
-        $("#row-"+(row-2)+"-cell-"+(col)).addClass(colour)      
+        $("#row-"+(row-2)+"-cell-"+(col)).addClass(colour)
           break;
       case 'o':
         $("#row-"+(row)+"-cell-"+(col)).addClass(colour)
         $("#row-"+(row)+"-cell-"+(col+1)).addClass(colour)
         $("#row-"+(row-1)+"-cell-"+(col)).addClass(colour)
-        $("#row-"+(row-1)+"-cell-"+(col+1)).addClass(colour)      
+        $("#row-"+(row-1)+"-cell-"+(col+1)).addClass(colour)
           break;
     }
-  }    
- 
+  }
+
   drawByJquery("i", 5, 1, "purple");
   drawByJquery("z", 5, 6, "red");
   drawByJquery("t", 19, 2, "green");
@@ -70,9 +70,4 @@ $(document).ready(function() {
 
       }
     }
-
-
-
 });
-
-
