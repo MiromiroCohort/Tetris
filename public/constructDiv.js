@@ -1,13 +1,13 @@
-function temp() {
+function buildTable() {
 	var thisString = ""
-	for (var i=24; i>0; i--){
+	for (var i=1; i<25; i++){
 		thisString += "<div class=\"row\" id=\"row-"+i+"\">"
 		for (var j=1; j<11; j++) {
-			thisString += "<div class=\"cell\" id=\"row-" + i + "-cell-"+j + "\">&nbsp;</div>"
+			thisString += "<div class=\"cell inactive\" id=\"row-" + i + "-cell-"+j + "\">&nbsp;</div>"
 		}
 		thisString += "</div>"
 	}
-	console.log(thisString)
+	$("#board").append(thisString)
 }
 
-temp()
+buildTable
