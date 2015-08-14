@@ -126,7 +126,7 @@ function isMoveLeftDownPossible(board,figure,left_corner)
      }
      var j = left_corner.j-1;
 
-      if (j == 0) return false;
+      if (j == -1) return false;
      for(count = left_corner.i+1; count < left_corner.i+figure.length+1; count++)
      {
        if ((board[count][j] > 0)& (board[count-1][j+1] > 0)) return false;
@@ -202,7 +202,7 @@ function moveFigureLeftDown(board,figure,left_corner)
         board[i][j] = 0;
       }
     }
-    if(!isFigurePositionedLeft(board,figure,left_corner))
+    if(!isFigurePositionedLeft(figure))
     {
       positionFigureLeft(figure);
     }
@@ -230,20 +230,19 @@ while(isMoveLeftDownPossible(board,a,left_corner))
   moveFigureLeftDown(board,a, left_corner)
   console.log(board);
 }
-
 while (isMovePossible(board,a,left_corner))
 {
   moveFigureDown(board,a,left_corner)
   console.log(board);
 }
-b =[[1,0,0],[1,0,0],[1,1,0]];
-left_corner={i:4-a.length,j:5}
-inject_figure(board, b, left_corner);
-while (isMovePossible(board,b,left_corner))
-{
-  moveFigureDown(board,b,left_corner)
-  console.log(board);
-}
+// b =[[1,0,0],[1,0,0],[1,1,0]];
+// left_corner={i:4-a.length,j:5}
+// inject_figure(board, b, left_corner);
+// while (isMovePossible(board,b,left_corner))
+// {
+//   moveFigureDown(board,b,left_corner)
+//   console.log(board);
+// }
 // c=[[1,1],[1,1]]
 // left_corner={i:4-c.length,j:5}
 // inject_figure(board, c, left_corner);
