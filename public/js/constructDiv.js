@@ -7,7 +7,6 @@ function temp() {
 		}
 		thisString += "</div>"
 	}
-	console.log(thisString)
 }
 
 temp()
