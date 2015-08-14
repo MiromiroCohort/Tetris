@@ -26,6 +26,10 @@ describe "GET /help" do
 end
 
 
+
+
+
+
 # describe 'GET /highscore' do
 #   before do
 #     5.times do
@@ -61,38 +65,38 @@ end
 #   end
 # end
 
-describe 'GET /score' do
-  before do
-    5.times do
-      @user = FactoryGirl.create :user
-      rand(10).times{
-        @score = FactoryGirl.create :score, :user => @user
-      }
-    end
-    global = {}
+# describe 'GET /score' do
+#   before do
+#     5.times do
+#       @user = FactoryGirl.create :user
+#       rand(10).times{
+#         @score = FactoryGirl.create :score, :user => @user
+#       }
+#     end
+#     global = {}
 
-    top_scores = Score.all.order('score DESC').first(10)
-    top_scores.each do |item|
-      key = User.find_by(id: item.user_id).name
-      val = item.score
-      global[key] = val
-    end
+#     top_scores = Score.all.order('score DESC').first(10)
+#     top_scores.each do |item|
+#       key = User.find_by(id: item.user_id).name
+#       val = item.score
+#       global[key] = val
+#     end
 
-    user = User.find(4) #FOR TESTING PURPOSES ONLY
-    latest_score = user.scores.last.to_json
-    users_highest_score = user.scores.order("score DESC").first.to_json
+#     user = User.find(4) #FOR TESTING PURPOSES ONLY
+#     latest_score = user.scores.last.to_json
+#     users_highest_score = user.scores.order("score DESC").first.to_json
 
-    ranked_array = Score.all.order("score DESC")
-    your_ranking = ranked_array.find_index(Score.find_by_id(user.id))
-    your_ranking.to_json
+#     ranked_array = Score.all.order("score DESC")
+#     your_ranking = ranked_array.find_index(Score.find_by_id(user.id))
+#     your_ranking.to_json
 
-    @score = {top: global, latest_score: latest_score, high_score: users_highest_score, rank: your_ranking}
+#     @score = {top: global, latest_score: latest_score, high_score: users_highest_score, rank: your_ranking}
 
-    get "/score"
-  end
+#     get "/score"
+#   end
 
-  it "should return all high scores" do
-    puts last_response.body
-    expect(last_response.body).to eq(@score.to_json)
-  end
-end
+#   it "should return all high scores" do
+#     puts last_response.body
+#     expect(last_response.body).to eq(@score.to_json)
+#   end
+# end
