@@ -69,7 +69,6 @@ div {
   height: 80vh;
   border: solid 5px black;
   height: 100%;
-  overflow: hidden;
   font-size:0px;
 }
 
@@ -134,5 +133,75 @@ div {
  background-image: url("../img/iconset2/white.png");
   background-size: cover;   
 }
+/*tablet*/
 
+@media screen and (min-device-width: 768px) and (max-width: 1024px) and (max-device-height: 768px) {
 
+  body {
+    background-color: orange;
+  }
+    
+  .row {
+    width: 100%;
+    display: block;
+    line-height: 0px;
+    padding: 0px;
+    border: 0px;
+    margin:0px;outline:none;
+    vertical-align: top;
+    font-size:0px;
+  }
+
+  #row-24, #row-23, #row-22, #row-21 {
+    height: 16px;
+    visibility: hidden;
+  }
+
+  .cell {
+    width:08%;
+    /*border: solid 1px black;*/*/
+    border: 0;
+    display: inline-block;
+    padding: .6em;
+    margin:0px;outline:none;
+    vertical-align: top;
+    border-spacing: 0;
+    font-size:12px;
+    line-height:14px;
+  }
+}
+
+/*mobile*/
+@media screen and (min-device-width: 320px) and (max-width: 480px) {
+
+  body {background-color: black}
+
+  .row {
+    width: 95%;
+    display: block;
+    line-height: 0px;
+    padding: 0px;
+    border: 0px;
+    margin:0px;outline:none;
+    vertical-align: top;
+    font-size:0px;
+  }
+
+  #row-24, #row-23, #row-22, #row-21 {
+    height: 16px;
+    visibility: hidden;
+  }
+
+  .cell {
+    width:07%;
+    /*border: solid 1px black;*/*/
+    border: 0;
+    display: inline-block;
+    padding: .6em;
+    margin:0px;outline:none;
+    vertical-align: top;
+    border-spacing: 0;
+    font-size:8px;
+    line-height:10px;
+  }
+}
