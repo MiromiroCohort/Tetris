@@ -1,14 +1,16 @@
-before "/highscores/*" do
-  redirect "/login" unless session[:user_id]
-end
+# before "/highscores/*" do
+#   redirect "/login" unless session[:user_id]
+# end
 
 get '/highscores/global' do
   global = {}
   top_scores = Score.all.order('score DESC').first(10)
-  top_scores.each do |item|
-    key = User.find_by(id: item.user_id).name
-    val = item.score
-    global[key] = val
+  counter = 0
+  top_scores.each do |i|
+    counter += 1
+    name = User.find_by(id: i.user_id).name
+    score = i.score
+    global[counter] = {name => score}
   end
   score_top_ten = {global: global}
   score_top_ten.to_json

@@ -7,6 +7,7 @@ get "/blocks" do
   shuffled_array = array.shuffle!
   blocks = {block: shuffled_array}
   blocks.to_json
+  # print blocks.to_json
 end
 
 
