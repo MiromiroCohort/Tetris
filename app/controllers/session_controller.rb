@@ -3,14 +3,14 @@ post "/session" do
 
   if user.password == params[:password]
     session[:user_id] = user.id
-    redirect "/highscore"
-  else
     redirect "/"
+  else
+    redirect "/login"
   end
 end
 
 delete "/session" do
   session[:user_id] = nil
 
-  redirect "/"
+  redirect "/login"
 end

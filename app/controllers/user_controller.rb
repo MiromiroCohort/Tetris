@@ -1,5 +1,5 @@
-post "/users" do
+post "/user" do
   user = User.create params[:user]
-  sessions[:user_id] = user.user_id
-  redirect "/highscore" # Play/help/highscore page
+  session[:user_id] = user.id
+  redirect "/"
 end
