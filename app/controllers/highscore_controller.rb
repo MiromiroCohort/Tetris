@@ -1,6 +1,6 @@
-# before "/highscores/*" do
-#   redirect "/login" unless session[:user_id]
-# end
+before "/highscores/*" do
+  redirect "/login" unless session[:user_id]
+end
 
 get '/highscores/global' do
   global = {}
@@ -19,7 +19,7 @@ end
 
 get '/highscores/user' do
   # user = User.find(session[:user_id]) #FOR ACTUAL PURPOSES
-  user = User.find(4) #FOR TESTING PURPOSES ONLY
+  user = User.find(1305) #FOR TESTING PURPOSES ONLY
   users_highest_score = user.scores.order("score DESC").first(10).to_json
   user_high = {user_high: users_highest_score}
   user_high.to_json
@@ -28,9 +28,9 @@ end
 
 get '/highscores/user/rank' do
   # user = User.find(session[:user_id]) #FOR ACTUAL PURPOSES
-  user = User.find(4) #FOR TESTING PURPOSES ONLY
+  user = User.find(1305) #FOR TESTING PURPOSES ONLY
   ranked_array = Score.all.order("score DESC")
-  your_ranking = ranked_array.find_index(Score.find_by_id(user.id)) # Maybe + 1, as the top player potentially will be ranked 0 due to index in array.
+  your_ranking = ranked_array.find_index(Score.find_by_user_id(user.id)) # Maybe + 1, as the top player potentially will be ranked 0 due to index in array.
   user_rank = {user_rank: your_ranking}
   user_rank.to_json
 end
