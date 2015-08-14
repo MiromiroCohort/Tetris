@@ -1,18 +1,19 @@
 
 function emptySquareArray(length)
-{ var fliped=[]
-for(var i=0;i<length;i++)
-    {  temp= [] ;
+{
+  var fliped=[]
+  for(var i=0;i<length;i++)
+      {  temp= [] ;
 
-      for(var j=0;j < length;j++)
-      {
-          temp.push(0);
+        for(var j=0;j < length;j++)
+        {
+            temp.push(0);
+        }
+        // console.log temp
+        fliped.push(temp);
       }
-      // console.log temp
-      fliped.push(temp);
-    }
-    return fliped
-  }
+  return fliped
+}
 
 function rotateLeft(array)
 {
@@ -24,9 +25,9 @@ function rotateLeft(array)
         fliped[j][array[i].length-1-i] = array[i][j];
       }
    }
-
-   return fliped
+  return fliped
 }
+
 function rotateRight(array)
 {
   var fliped=emptySquareArray(array.length)
@@ -37,16 +38,80 @@ function rotateRight(array)
         fliped[array[i].length-j-1][i] = array[i][j];
       }
    }
-
-   return fliped
+  return fliped
 }
-var a=[[1,0,0],[1,0,0],[1,1,0]]
-console.log(a);
-a=rotateLeft(a);
-console.log(a);
-a=rotateLeft(a);
-console.log(a);
-a=rotateRight(a);
-console.log(a);
-a=rotateRight(a);
-console.log(a);
+
+function game_board()
+{
+  var new_board=[]
+  for(var i=0;i<24;i++)
+  { temp= [] ;
+    for(var j=0;j<10;j++)
+    {
+      temp.push(0);
+    }
+    new_board.push(temp);
+  }
+  return new_board
+}
+
+function inject_figure(board,figure,left_corner)
+{
+    for(var i = left_corner.i; i<left_corner.i+figure.length;i++)
+    {
+      for(var j=left_corner.j; j<left_corner.j+figure.length;j++)
+      {
+        board[i][j]=figure[i-left_corner.i][j-left_corner.j]
+      }
+    }
+}
+
+function isMovePossible(board,figure,left_corner)
+{
+     var i=left_corner.i+figure.length+1;
+     if (i==24)
+     {
+      return false;
+     }
+     for(j=left_corner.j;j<left_corner.j+figure.length;j++)
+     {
+       if (board[i][j] == 1) return false;
+     }
+     return true;
+}
+
+function moveFigureDown(board,figure,left_corner)
+{
+  for(var i = left_corner.i; i<left_corner.i+figure.length;i++)
+    {
+      for(var j=left_corner.j; j<left_corner.j+figure.length;j++)
+      {
+        board[i][j]=0;
+      }
+    }
+    left_corner.i=left_corner.i+1;
+    inject_figure(board,figure,left_corner)
+
+}
+
+
+var a=[[1,0,0],[1,0,0],[1,1,0]];
+board=game_board();
+var left_corner={i:4-a.length,j:5}
+inject_figure(board, a, left_corner);
+console.log(board);
+while isMovePossible(board,a,left_corner)
+{
+  moveFigureDown(board,a,left_corner)
+  console.log(board);
+}
+
+// console.log(a);
+// a=rotateLeft(a);
+// console.log(a);
+// a=rotateLeft(a);
+// console.log(a);
+// a=rotateRight(a);
+// console.log(a);
+// a=rotateRight(a);
+// console.log(a);
