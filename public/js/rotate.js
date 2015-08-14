@@ -93,6 +93,25 @@ function moveFigureDown(board,figure,left_corner)
     inject_figure(board,figure,left_corner)
 
 }
+function isMoveRightDownPossible(board,figure,left_corner)
+{
+   var i=left_corner.i+figure.length;
+     if (i == 24)
+     {
+      return false;
+     }
+     for(var j = left_corner.j+1; j<left_corner.j+figure.length+1; j++)
+     {
+       if ((board[i][j] == 1)& (board[i-1][j-1] == 1)) return false;
+     }
+     var j = left_corner+figure.length
+     if (j == 10) return false;
+     for(j = left_corner.j+1; j < left_corner.j+figure.length+1; j++)
+     {
+       if ((board[i][j] == 1)& (board[i-1][j-1] == 1)) return false;
+     }
+     return true;
+}
 
 function moveFigureRightDown(board,figure,left_corner)
 {
@@ -103,8 +122,21 @@ function moveFigureRightDown(board,figure,left_corner)
         board[i][j]=0;
       }
     }
-    left_corner.i=left_corner.i+1; left_corner.j=left_corner.j+1
+    left_corner.i=left_corner.i+1; left_corner.j=left_corner.j+1;
     inject_figure(board,figure,left_corner)
+
+}
+function moveFigureLeftDown(board,figure,left_corner)
+{
+  for(var i = left_corner.i; i<left_corner.i+figure.length;i++)
+    {
+      for(var j=left_corner.j; j<left_corner.j+figure.length;j++)
+      {
+        board[i][j]=0;
+      }
+    }
+    left_corner.i=left_corner.i+1; left_corner.j=left_corner.j-1
+    inject_figure(board,figure,left_corner);
 
 }
 
