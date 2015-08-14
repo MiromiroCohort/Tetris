@@ -48,6 +48,7 @@ $(document).ready(function() {
     }
   }
 
+
   drawByJquery("i", 22, 8, "purple");
   drawByJquery("i", 5, 1, "purple");
   drawByJquery("z", 5, 6, "red");
@@ -98,6 +99,5 @@ buildTable()
       alert("fail")
     })
   })
-
 });
 

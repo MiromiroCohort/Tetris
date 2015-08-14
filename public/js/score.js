@@ -1,7 +1,5 @@
 // $(document).ready(function() {
 
-  var testVar = "a string"
-
   var addNewScore = function(score){
     $.ajax({
       url:'/score',
