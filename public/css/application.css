@@ -10,8 +10,66 @@ body {
   height: 80vh;
 }
 
+.masthead {
+  position:absolute;
+  z-index: 999;
+  font-size: 4vw;
+  width: 100%;
+  height: 10%;
+  font-family: Arial, sans-serif;
+  text-decoration: none; 
+  text-shadow: 1px 1px 1px #B20808; 
+  text-decoration: none;
+  margin: 0;
+  padding: .5em 0;
+  background: -webkit-linear-gradient(top, #040f1c, #2B3746) no-repeat;
+  background: -o-linear-gradient(top, #040f1c, #2B3746) no-repeat; /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(top, #040f1c, #2B3746) no-repeat; /* For Firefox 3.6 to 15 */
+  background: linear-gradient(top, #040f1c, #2B3746) no-repeat; /* Standard syntax */
+}
+
+
+.centered-text {
+  font-size: 3vw;
+  color:#F1F2F7;
+  max-width: 80%;
+  margin: 0 auto;
+
+}
+
+.help {
+  text-align: justify;
+
+}
+
 .container {
   margin-left: 10%;
+}
+
+div {
+  box-sizing: border-box;
+  clear:none;
+}
+
+/*board definitions*/
+.gameboard {
+  position:fixed;
+  margin: 0 auto;
+  position:absolute;
+  z-index: 1;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  max-width: 60vh;
+  background: -webkit-linear-gradient(top, #001D55, #132132) no-repeat;
+  background: -o-linear-gradient(top, #001D55, #132132) no-repeat; /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(top, #001D55, #132132) no-repeat; /* For Firefox 3.6 to 15 */
+  background: linear-gradient(top, #001D55, #132132) no-repeat; /* Standard syntax */
+  height: 80vh;
+  border: solid 5px black;
+  height: 100%;
+  font-size:0px;
 }
 
 .row {
@@ -26,15 +84,9 @@ body {
 }
 
 #row-24, #row-23, #row-22, #row-21 {
-  height: 20px;
+  height: 24px;
   visibility: hidden;
 }
-
-div {
-  box-sizing: border-box;
-  clear:none;
-}
-
 
 .cell {
   width:09%;
@@ -81,58 +133,75 @@ div {
  background-image: url("../img/iconset2/white.png");
   background-size: cover;   
 }
+/*tablet*/
 
+@media screen and (min-device-width: 768px) and (max-width: 1024px) and (max-device-height: 768px) {
 
+  body {
+    background-color: orange;
+  }
+    
+  .row {
+    width: 100%;
+    display: block;
+    line-height: 0px;
+    padding: 0px;
+    border: 0px;
+    margin:0px;outline:none;
+    vertical-align: top;
+    font-size:0px;
+  }
 
-.masthead {
-  position:absolute;
-  z-index: 999;
-  font-size: 4vw;
-  width: 100%;
-  height: 10%;
-  font-family: Arial, sans-serif;
-  text-decoration: none; 
-  text-shadow: 1px 1px 1px #B20808; 
-  text-decoration: none;
-  margin: 0;
-  padding: .5em 0;
-  background: -webkit-linear-gradient(top, #040f1c, #2B3746) no-repeat;
-  background: -o-linear-gradient(top, #040f1c, #2B3746) no-repeat; /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(top, #040f1c, #2B3746) no-repeat; /* For Firefox 3.6 to 15 */
-  background: linear-gradient(top, #040f1c, #2B3746) no-repeat; /* Standard syntax */
+  #row-24, #row-23, #row-22, #row-21 {
+    height: 16px;
+    visibility: hidden;
+  }
+
+  .cell {
+    width:08%;
+    /*border: solid 1px black;*/*/
+    border: 0;
+    display: inline-block;
+    padding: .6em;
+    margin:0px;outline:none;
+    vertical-align: top;
+    border-spacing: 0;
+    font-size:12px;
+    line-height:14px;
+  }
 }
 
+/*mobile*/
+@media screen and (min-device-width: 320px) and (max-width: 480px) {
 
-.centered-text {
-  font-size: 3vw;
-  color:#F1F2F7;
-  max-width: 80%;
-  margin: 0 auto;
+  body {background-color: black}
 
-}
+  .row {
+    width: 95%;
+    display: block;
+    line-height: 0px;
+    padding: 0px;
+    border: 0px;
+    margin:0px;outline:none;
+    vertical-align: top;
+    font-size:0px;
+  }
 
-.help {
-  text-align: justify;
+  #row-24, #row-23, #row-22, #row-21 {
+    height: 16px;
+    visibility: hidden;
+  }
 
-}
-
-.gameboard {
-  position:fixed;
-  margin: 0 auto;
-  position:absolute;
-  z-index: 1;
-  top:0;
-  right:0;
-  bottom:0;
-  left:0;
-  max-width: 60vh;
-  background: -webkit-linear-gradient(top, #001D55, #132132) no-repeat;
-  background: -o-linear-gradient(top, #001D55, #132132) no-repeat; /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(top, #001D55, #132132) no-repeat; /* For Firefox 3.6 to 15 */
-  background: linear-gradient(top, #001D55, #132132) no-repeat; /* Standard syntax */
-  height: 80vh;
-  border: solid 15px black;
-  height: 100%;
-  overflow: hidden;
-  font-size:0px;
+  .cell {
+    width:07%;
+    /*border: solid 1px black;*/*/
+    border: 0;
+    display: inline-block;
+    padding: .6em;
+    margin:0px;outline:none;
+    vertical-align: top;
+    border-spacing: 0;
+    font-size:8px;
+    line-height:10px;
+  }
 }

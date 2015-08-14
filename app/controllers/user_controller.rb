@@ -1,7 +1,5 @@
 post "/user" do
-  user = User.create(name: params[:name],
-                      email: params[:email],
-                      digest: params[:digest])
+  user = User.create params[:user]
   session[:user_id] = user.id
-  redirect "/highscore"
+  redirect "/"
 end
