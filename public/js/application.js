@@ -20,7 +20,6 @@ $(document).ready(function() {
         $("#row-"+(row+1)+"-cell-"+(col+1)).addClass(colour)
         $("#row-"+(row+2)+"-cell-"+(col+1)).addClass(colour)
         $("#row-"+(row+3)+"-cell-"+(col+1)).addClass(colour)
-
           break;
       case 't':
         $("#row-"+(row)+"-cell-"+(col)).addClass(colour)
@@ -58,7 +57,6 @@ $(document).ready(function() {
   drawByJquery("j", 15, 6, "aqua");
   drawByJquery("o", 18, 5, "orange");
 
-
   function buildTable() {
     var thisString = ""
     thisString += "<div class=\"masthead\"><div class=\"centered-text\">Your Score</div></div><div class=\"gameboard\">"
@@ -69,26 +67,36 @@ $(document).ready(function() {
       }
       thisString += "</div></div></div>"
     }
-
-
     $("#board").append(thisString)
+    $("#board").append("<button class='play-button' type='submit'>Play</button>")
   }
 
 buildTable()
 
-
-    for (var row=0; row<25; row++){
-      for (var cell=1; cell<11; cell++){
-        if ($("#row-"+(row-1)+"-cell-"+cell).hasClass("inActive")) {
-          //do nothing
-        } else {
-          console.log($("#row-"+(row-1)+"-cell-"+cell).hasClass())
-        }
-
+  for (var row=0; row<25; row++){
+    for (var cell=1; cell<11; cell++){
+      if ($("#row-"+(row-1)+"-cell-"+cell).hasClass("inActive")) {
+        //do nothing
+      } else {
+        console.log($("#row-"+(row-1)+"-cell-"+cell).hasClass())
       }
     }
+  }
 
-
+  $(".play-button").on("click", function(event) {
+    event.preventDefault()
+    $.ajax({
+      url: "/blocks",
+      type: "GET",
+      datatype: "json"
+    })
+    .success(function(data){
+      // Start function from game mechanics
+    })
+    .fail(function(){
+      alert("fail")
+    })
+  })
 
 });
 
