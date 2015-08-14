@@ -92,6 +92,7 @@ buildTable()
     })
     .success(function(data){
       // Start function from game mechanics
+      getBlocks();
     })
     .fail(function(){
       alert("fail")
