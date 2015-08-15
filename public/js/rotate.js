@@ -337,7 +337,7 @@ b =[[0,0,0,1],[0,0,0,1],[0,0,0,1],[0,0,0,1]];
   moveFigureDown(board,b,left_corner)
   console.log(board);
 }
-
+console.log(b)
 // c=[[1,1],[1,1]]
 // left_corner={i:4-c.length,j:5}
 // inject_figure(board, c, left_corner);
