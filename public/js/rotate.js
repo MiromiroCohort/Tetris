@@ -75,7 +75,7 @@ function isMovePossible(board,figure,left_corner)
      }
      for(j=left_corner.j;j<left_corner.j+figure.length;j++)
      {
-       if ((board[i][j] > 0)& (board[i-1][j] > 0)) return false;
+       if ((board[i][j] > 0) & (figure[i-1-left_corner.i][j-left_corner.j] > 0)) return false;
      }
      return true;
 }
@@ -338,6 +338,15 @@ b =[[0,0,0,1],[0,0,0,1],[0,0,0,1],[0,0,0,1]];
   console.log(board);
 }
 console.log(b)
+b =[[0,0,0,1],[0,0,0,1],[0,0,0,1],[0,0,0,1]];
+b=rotateRight(b)
+left_corner={i:4-a.length,j:5}
+ inject_figure(board, b, left_corner);
+  while (isMovePossible(board,b,left_corner))
+{
+  moveFigureDown(board,b,left_corner)
+  console.log(board);
+}
 // c=[[1,1],[1,1]]
 // left_corner={i:4-c.length,j:5}
 // inject_figure(board, c, left_corner);
