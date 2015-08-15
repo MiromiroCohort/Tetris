@@ -82,13 +82,7 @@ function isMovePossible(board,figure,left_corner)
 
 function moveFigureDown(board,figure,left_corner)
 {
-    for(var i = left_corner.i; i<left_corner.i+figure.length;i++)
-    {
-      for(var j=left_corner.j; j<left_corner.j+figure.length;j++)
-      {
-        board[i][j]=0;
-      }
-    }
+    boardWithoutCurrentFigure(board, figure, left_corner);
     if (isFigurePositionedDown(figure))
     {
       left_corner.i=left_corner.i+1;
@@ -205,13 +199,7 @@ function positionFigureDown(figure)
 
 function moveFigureRightDown(board,figure,left_corner)
 {
-  for(var i = left_corner.i; i < left_corner.i+figure.length;i++)
-    {
-      for(var j = left_corner.j; j < left_corner.j+figure.length;j++)
-      {
-        board[i][j] = 0;
-      }
-    }
+  boardWithoutCurrentFigure(board, figure, left_corner);
     if(!isFigurePositionedRight(figure))
       {
         positionFigureRight(figure)
@@ -225,13 +213,7 @@ function moveFigureRightDown(board,figure,left_corner)
 
 function moveFigureLeftDown(board,figure,left_corner)
 {
-  for(var i = left_corner.i; i < left_corner.i+figure.length; i++)
-    {
-      for(var j = left_corner.j; j < left_corner.j+figure.length; j++)
-      {
-        board[i][j] = 0;
-      }
-    }
+  boardWithoutCurrentFigure(board, figure, left_corner);
     if(!isFigurePositionedLeft(figure))
     {
       positionFigureLeft(figure);
@@ -243,10 +225,36 @@ function moveFigureLeftDown(board,figure,left_corner)
     inject_figure(board,figure,left_corner);
 
 }
+function findLowestFreeLine(board)
+{
+  for(i=23;i>3;i--)
+  {
+    var line=0;
+    for(j=0;j<10;j++)
+    {
+      line+=board[i][j]
+    }
+    if(line == 0) return i;
+  }
+  return 0;
+}
+
+function boardWithoutCurrentFigure(board, figure, left_corner)
+{
+  for(var i = left_corner.i; i < left_corner.i+figure.length;i++)
+    {
+      for(var j = left_corner.j; j < left_corner.j+figure.length;j++)
+      {
+        board[i][j] = 0;
+      }
+    }
+}
 
 
 var a = [[1,0,0],[1,0,0],[1,1,0]];
-board = game_board();
+
+ board = game_board();
+
 var left_corner = {i:4-a.length,j:5}
 inject_figure(board, a, left_corner);
 console.log(board);
@@ -267,6 +275,8 @@ while (isMovePossible(board,a,left_corner))
   moveFigureDown(board,a,left_corner)
   console.log(board);
 }
+ var free_line=findLowestFreeLine(board)
+console.log(free_line)
 // b =[[1,0,0],[1,0,0],[1,1,0]];
 // left_corner={i:4-a.length,j:5}
 // inject_figure(board, b, left_corner);
