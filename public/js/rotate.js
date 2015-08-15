@@ -61,7 +61,7 @@ function inject_figure(board,figure,left_corner)
     {
       for(var j = left_corner.j; j<left_corner.j+figure.length;j++)
       {
-        board[i][j] = figure[i-left_corner.i][j-left_corner.j]
+       if(figure[i-left_corner.i][j-left_corner.j] > 0) board[i][j] = figure[i-left_corner.i][j-left_corner.j]
       }
     }
 }
@@ -245,7 +245,7 @@ function boardWithoutCurrentFigure(board, figure, left_corner)
     {
       for(var j = left_corner.j; j < left_corner.j+figure.length;j++)
       {
-        board[i][j] = 0;
+         if(figure[i-left_corner.i][j-left_corner.j] > 0) board[i][j] = 0;
       }
     }
 }
@@ -282,10 +282,13 @@ while(isMoveLeftDownPossible(board,a,left_corner))
   moveFigureLeftDown(board,a, left_corner)
   console.log(board);
 }
-
-
+  boardWithoutCurrentFigure(board,a,left_corner)
+  a=rotateRight(a);
+  moveFigureDown(board,a,left_corner)
+  console.log(board);
 while (isMovePossible(board,a,left_corner))
-{  a=rotateRight(a);
+{ boardWithoutCurrentFigure(board,a,left_corner)
+  a=rotateRight(a);
   moveFigureDown(board,a,left_corner)
   console.log(board);
 }
@@ -293,14 +296,48 @@ while (isMovePossible(board,a,left_corner))
 console.log(free_line)
 var fill_line=isAnyLineFilled(board)
 console.log(fill_line);
-// b =[[1,0,0],[1,0,0],[1,1,0]];
-// left_corner={i:4-a.length,j:5}
-// inject_figure(board, b, left_corner);
-// while (isMovePossible(board,b,left_corner))
-// {
-//   moveFigureDown(board,b,left_corner)
-//   console.log(board);
-// }
+ b =[[0,0,0,1],[0,0,0,1],[0,0,0,1],[0,0,0,1]];
+
+ left_corner={i:4-a.length,j:5}
+ inject_figure(board, b, left_corner);
+ console.log(board);
+  boardWithoutCurrentFigure(board,b,left_corner)
+ b=rotateRight(b);
+ console.log(b)
+ moveFigureRightDown(board, b, left_corner)
+ console.log(board)
+while (isMovePossible(board,b,left_corner))
+{
+  moveFigureDown(board,b,left_corner)
+  console.log(board);
+}
+left_corner={i:4-a.length,j:5}
+b = [[1,0,0],[1,0,0],[1,1,0]];
+ inject_figure(board, b, left_corner);
+ moveFigureLeftDown(board,b,left_corner)
+ boardWithoutCurrentFigure(board,b,left_corner)
+ b=rotateRight(b)
+ moveFigureLeftDown(board,b,left_corner)
+ while (isMovePossible(board,b,left_corner))
+{
+  moveFigureDown(board,b,left_corner)
+  console.log(board);
+}
+b =[[0,0,0,1],[0,0,0,1],[0,0,0,1],[0,0,0,1]];
+
+ left_corner={i:4-a.length,j:5}
+ inject_figure(board, b, left_corner);
+ while(isMoveLeftDownPossible(board,b,left_corner))
+{
+  moveFigureLeftDown(board,b, left_corner)
+  console.log(board);
+}
+ while (isMovePossible(board,b,left_corner))
+{
+  moveFigureDown(board,b,left_corner)
+  console.log(board);
+}
+
 // c=[[1,1],[1,1]]
 // left_corner={i:4-c.length,j:5}
 // inject_figure(board, c, left_corner);
