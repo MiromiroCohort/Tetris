@@ -292,10 +292,7 @@ while (isMovePossible(board,a,left_corner))
   moveFigureDown(board,a,left_corner)
   console.log(board);
 }
- var free_line=findLowestFreeLine(board)
-console.log(free_line)
-var fill_line=isAnyLineFilled(board)
-console.log(fill_line);
+
  b =[[0,0,0,1],[0,0,0,1],[0,0,0,1],[0,0,0,1]];
 
  left_corner={i:4-a.length,j:5}
@@ -347,6 +344,10 @@ left_corner={i:4-a.length,j:5}
   moveFigureDown(board,b,left_corner)
   console.log(board);
 }
+ var free_line=findLowestFreeLine(board)
+console.log(free_line)
+var fill_line=isAnyLineFilled(board)
+console.log(fill_line);
 // c=[[1,1],[1,1]]
 // left_corner={i:4-c.length,j:5}
 // inject_figure(board, c, left_corner);
