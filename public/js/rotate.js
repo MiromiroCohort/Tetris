@@ -249,6 +249,20 @@ function boardWithoutCurrentFigure(board, figure, left_corner)
       }
     }
 }
+function isAnyLineFilled(board)
+{
+  for(i=23;i>3;i--)
+  {
+    var line=0;
+    for(j=0;j<10;j++)
+    {
+      line+=board[i][j]
+    }
+    if(line == 0) return i;
+  }
+  return 0;
+
+}
 
 
 var a = [[1,0,0],[1,0,0],[1,1,0]];
