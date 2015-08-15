@@ -253,12 +253,12 @@ function isAnyLineFilled(board)
 {
   for(i=23;i>3;i--)
   {
-    var line=0;
+    var line=1;
     for(j=0;j<10;j++)
     {
-      line+=board[i][j]
+      if (board[i][j] == 0) line=0;
     }
-    if(line == 0) return i;
+    if(line == 1) return i;
   }
   return 0;
 
@@ -291,6 +291,8 @@ while (isMovePossible(board,a,left_corner))
 }
  var free_line=findLowestFreeLine(board)
 console.log(free_line)
+var fill_line=isAnyLineFilled(board)
+console.log(fill_line);
 // b =[[1,0,0],[1,0,0],[1,1,0]];
 // left_corner={i:4-a.length,j:5}
 // inject_figure(board, b, left_corner);
