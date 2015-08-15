@@ -69,7 +69,7 @@ function inject_figure(board,figure,left_corner)
 function isMovePossible(board,figure,left_corner)
 {
      var i=left_corner.i+figure.length;
-     if (i==24)
+     if ((i==24)&isFigurePositionedDown(figure))
      {
       return false;
      }
@@ -82,21 +82,28 @@ function isMovePossible(board,figure,left_corner)
 
 function moveFigureDown(board,figure,left_corner)
 {
-  for(var i = left_corner.i; i<left_corner.i+figure.length;i++)
+    for(var i = left_corner.i; i<left_corner.i+figure.length;i++)
     {
       for(var j=left_corner.j; j<left_corner.j+figure.length;j++)
       {
         board[i][j]=0;
       }
     }
-    left_corner.i=left_corner.i+1;
+    if (isFigurePositionedDown(figure))
+    {
+      left_corner.i=left_corner.i+1;
+    }
+    else
+    {
+      positionFigureDown(figure);
+    }
     inject_figure(board,figure,left_corner)
 
 }
 function isMoveRightDownPossible(board,figure,left_corner)
 {
    var i=left_corner.i+figure.length;
-     if (i == 24)
+     if ((i == 24)&isFigurePositionedDown(figure))
      {
       return false;
      }
@@ -116,7 +123,7 @@ function isMoveRightDownPossible(board,figure,left_corner)
 function isMoveLeftDownPossible(board,figure,left_corner)
 {
    var i=left_corner.i+figure.length;
-     if (i == 24)
+     if ((i == 24)&isFigurePositionedDown(figure))
      {
       return false;
      }
@@ -172,6 +179,29 @@ function positionFigureLeft(figure)
         figure[i][figure.length-1]=0;
    }
 }
+
+function isFigurePositionedDown(figure)
+{ var i=figure.length-1;
+   for(var j = 0; j < figure.length; j++)
+   {
+     if (figure[i][j] > 0 ) return true;
+   }
+   return false;
+}
+
+function positionFigureDown(figure)
+{
+   for (var i=figure.length-1; i>0 ; i--)
+   {
+     for (var j=0;j<figure.length; j++)
+     {
+        figure[i][j]=figure[i-1][j];
+        figure[i-1][j]=0;
+     }
+
+   }
+}
+
 
 function moveFigureRightDown(board,figure,left_corner)
 {
@@ -230,8 +260,10 @@ while(isMoveLeftDownPossible(board,a,left_corner))
   moveFigureLeftDown(board,a, left_corner)
   console.log(board);
 }
+
+
 while (isMovePossible(board,a,left_corner))
-{
+{  a=rotateRight(a);
   moveFigureDown(board,a,left_corner)
   console.log(board);
 }
