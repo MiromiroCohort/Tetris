@@ -59,9 +59,10 @@ function inject_figure(board,figure,left_corner)
 {
     for(var i = left_corner.i; i<left_corner.i+figure.length;i++)
     {
-      for(var j = left_corner.j; j<left_corner.j+figure.length;j++)
+      for(var j = left_corner.j; j<left_corner.j+figure[i-left_corner.i].length;j++)
       {
        if(figure[i-left_corner.i][j-left_corner.j] > 0) board[i][j] = figure[i-left_corner.i][j-left_corner.j]
+        // console.log(figure)
       }
     }
 }
@@ -73,7 +74,7 @@ function isMovePossible(board,figure,left_corner)
      {
       return false;
      }
-     for(j=left_corner.j;j<left_corner.j+figure.length;j++)
+     for(j=left_corner.j;j<left_corner.j+figure[i-left_corner.i-1].length;j++)
      {
        if ((board[i][j] > 0) & (figure[i-1-left_corner.i][j-left_corner.j] > 0)) return false;
      }
@@ -85,10 +86,12 @@ function moveFigureDown(board,figure,left_corner)
     boardWithoutCurrentFigure(board, figure, left_corner);
     if (isFigurePositionedDown(figure))
     {
+
       left_corner.i=left_corner.i+1;
     }
     else
     {
+
       positionFigureDown(figure);
     }
     inject_figure(board,figure,left_corner)
@@ -176,7 +179,7 @@ function positionFigureLeft(figure)
 
 function isFigurePositionedDown(figure)
 { var i=figure.length-1;
-   for(var j = 0; j < figure.length; j++)
+   for(var j = 0; j < figure[i].length; j++)
    {
      if (figure[i][j] > 0 ) return true;
    }
@@ -199,6 +202,7 @@ function positionFigureDown(figure)
 
 function moveFigureRightDown(board,figure,left_corner)
 {
+
   boardWithoutCurrentFigure(board, figure, left_corner);
     if(!isFigurePositionedRight(figure))
       {
@@ -243,7 +247,7 @@ function boardWithoutCurrentFigure(board, figure, left_corner)
 {
   for(var i = left_corner.i; i < left_corner.i+figure.length;i++)
     {
-      for(var j = left_corner.j; j < left_corner.j+figure.length;j++)
+      for(var j = left_corner.j; j < left_corner.j+figure[i-left_corner.i].length;j++)
       {
          if(figure[i-left_corner.i][j-left_corner.j] > 0) board[i][j] = 0;
       }
@@ -262,6 +266,29 @@ function isAnyLineFilled(board)
   }
   return 0;
 
+}
+function moveHeapDown(board,free_line, fill_line)
+{
+   heap_corner={i:free_line,j:0}
+   heap=[]
+   for (var i = free_line;i < fill_line;i++ )
+   { var temp=[]
+      for(var j =0; j < 10; j++)
+       {
+         temp.push(board[i][j])
+         // first I tried to push board [i] to heap, but in that case I made adresses
+       }
+     heap.push(temp)
+   }
+    // console.log(heap);
+   for(var j=0;j<10;j++)
+    {board[fill_line][j] = 0}
+
+   while(isMovePossible(board,heap,heap_corner))
+   {
+      moveFigureDown(board,heap,heap_corner)
+      break;
+   }
 }
 
 
@@ -348,6 +375,8 @@ left_corner={i:4-a.length,j:5}
 console.log(free_line)
 var fill_line=isAnyLineFilled(board)
 console.log(fill_line);
+moveHeapDown(board,free_line,fill_line)
+
 // c=[[1,1],[1,1]]
 // left_corner={i:4-c.length,j:5}
 // inject_figure(board, c, left_corner);
