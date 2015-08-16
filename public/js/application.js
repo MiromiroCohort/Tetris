@@ -494,6 +494,14 @@ buildTable()
           right_corner_for_redrawing={i:left_corner.i+figure.length-1,j:left_corner.j+figure[0].length-1}
           reDrawPoligon(board,left_corner_for_redrawing,right_corner_for_redrawing);
           break;
+        case 101:
+          boardWithoutCurrentFigure(board,figure,left_corner);
+          figure=rotateRight(figure);
+          inject_figure(board, figure, left_corner);
+          left_corner_for_redrawing=left_corner
+          right_corner_for_redrawing={i:left_corner.i+figure.length-1,j:left_corner.j+figure[0].length-1}
+          reDrawPoligon(board,left_corner_for_redrawing,right_corner_for_redrawing);
+          break;
 
       }
 
