@@ -415,13 +415,14 @@ $(document).ready(function() {
   function buildTable() {
     var thisString = ""
     thisString += "<div class=\"masthead\"><div class=\"centered-text\">Your Score</div></div><div class=\"gameboard\">"
-    for (var i=1; i<25; i++){
+    for (var i=0; i<24; i++){
       thisString += "<div class=\"row\" id=\"row-"+i+"\">"
-      for (var j=1; j<11; j++) {
+      for (var j=0; j<10; j++) {
         thisString += "<div class=\"cell inactive\" id=\"row-" + i + "-cell-"+j + "\">&nbsp;</div>"
       }
-      thisString += "</div></div></div>"
+      thisString += "</div>"
     }
+    thisString+="</div></div>"
     $("#board").append(thisString)
     $("#board").append("<button class='play-button' type='submit'>Play</button>")
   }
@@ -429,7 +430,7 @@ $(document).ready(function() {
 buildTable()
 
   for (var row=0; row<25; row++){
-    for (var cell=1; cell<11; cell++){
+    for (var cell=0; cell<10; cell++){
       if ($("#row-"+(row-1)+"-cell-"+cell).hasClass("inActive")) {
         //do nothing
       } else {
@@ -438,7 +439,7 @@ buildTable()
     }
   }
    board = game_board();
-  reDrawPoligon(board,{i:0,j:0},{i:23,j:10});
+  reDrawPoligon(board,{i:0,j:0},{i:23,j:9});
   var figure = [[1,0,0],[1,0,0],[1,1,0]];
   var left_corner = {i:4-figure.length,j:5}
   inject_figure(board, figure, left_corner);
@@ -484,6 +485,7 @@ buildTable()
               right_corner_for_redrawing={i:left_corner.i+figure.length,j:left_corner.j+figure[0].length-1}
               moveFigureDown(board,figure,left_corner);
               reDrawPoligon(board,left_corner_for_redrawing,right_corner_for_redrawing);
+              console.log(left_corner);
           }
           break;
         case 113:
