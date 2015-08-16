@@ -476,6 +476,13 @@ buildTable()
           break;
         case 32:
           console.log("down");
+          if(isMovePossible(board,figure,left_corner))
+          {
+            left_corner_for_redrawing={i:left_corner.i,j:left_corner.j}
+              right_corner_for_redrawing={i:left_corner.i+figure.length,j:left_corner.j+figure[0].length-1}
+              moveFigureDown(board,figure,left_corner);
+              reDrawPoligon(board,left_corner_for_redrawing,right_corner_for_redrawing);
+          }
           break;
 
       }
