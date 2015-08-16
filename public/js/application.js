@@ -506,10 +506,14 @@ buildTable()
   var left_corner
   var right_corner
   var interval
-  $( document ).ajaxComplete(function( event,request, settings ) {
+  function injectTop()
+  {
     figure = figures.shift();
     left_corner = {i:4-figure.length,j:5}
     inject_figure(board, figure, left_corner);
+  }
+  $( document ).ajaxComplete(function( event,request, settings ) {
+    injectTop();
     right_corner ={i:left_corner.i+figure.length-1, j:left_corner.j+figure[0].length-1}
     reDrawPoligon(board,left_corner,right_corner)
     interval=setInterval(runGame, 4000);
@@ -525,6 +529,11 @@ buildTable()
               reDrawPoligon(board,left_corner_for_redrawing,right_corner_for_redrawing);
               console.log(left_corner);
           }
+    else
+    {
+      injectTop();
+
+    }
   }
 
 
