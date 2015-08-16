@@ -291,7 +291,61 @@ function moveHeapDown(board,free_line, fill_line)
    }
 }
 
+
+
 $(document).ready(function() {
+
+
+  function getBlocks(){
+    $.ajax({
+      type: 'get',
+      datatype: 'json',
+      url: '/blocks',
+      success: function(blockArray){
+        console.log(blockArray)
+        blockGenerator(blockArray);
+        // return blockArray;
+      }
+    })
+  };
+
+  function blockGenerator(blockArray){
+    console.log("Generator receives" + blockArray)
+    var arrayLength = blockArray.length;
+    console.log(arrayLength)
+    for (var i = 0; i < arrayLength; i++) {
+
+      var colour = Math.floor((Math.random() * 8) + 1);
+
+      console.log(blockArray[i]);
+
+      switch(blockArray[i]){
+        case "Z":
+          blockReceiver([[1,1,0],[0,1,1],[0,0,0]])
+        break;
+        case "T":
+          blockReceiver([[0,1,0],[1,1,1],[0,0,0]])
+        break;
+        case "L":
+          blockReceiver([[1,0,0],[1,0,0],[1,1,0]])
+        break;
+        case "J":
+          blockReceiver([[0,0,1],[0,0,1],[0,1,1]])
+        break;
+        case "O":
+          blockReceiver([[1,1,0],[1,1,0],[0,0,0]])
+        break;
+        case "S":
+          blockReceiver([[0,1,1],[1,1,0],[0,0,0]])
+        break;
+        case "I":
+          blockReceiver([[0,1,0],[0,1,0],[0,1,0]])
+        break;
+      }
+    }
+    console.log("All blocks have been sent to Eugene's enigma")
+
+  }
 
 
   function drawByJquery(shape, row, col, colour) {
@@ -438,13 +492,26 @@ buildTable()
       }
     }
   }
-   board = game_board();
+  figures=[]
+
+  getBlocks();
+  function blockReceiver(block)
+  {
+    figures.push(block);
+  }
+
+  board = game_board();
   reDrawPoligon(board,{i:0,j:0},{i:23,j:9});
-  var figure = [[1,0,0],[1,0,0],[1,1,0]];
-  var left_corner = {i:4-figure.length,j:5}
-  inject_figure(board, figure, left_corner);
-  var right_corner={i:left_corner.i+figure.length-1, j:left_corner.j+figure[0].length-1}
-  reDrawPoligon(board,left_corner,right_corner)
+  var figure =[]
+  var left_corner
+   var right_corner
+  $( document ).ajaxComplete(function( event,request, settings ) {
+    figure = figures.shift();
+    left_corner = {i:4-figure.length,j:5}
+    inject_figure(board, figure, left_corner);
+    right_corner ={i:left_corner.i+figure.length-1, j:left_corner.j+figure[0].length-1}
+    reDrawPoligon(board,left_corner,right_corner)
+  });
 
   $(document).keypress(function()
     {
