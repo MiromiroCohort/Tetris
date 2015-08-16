@@ -452,6 +452,8 @@ buildTable()
       // 32 - space
       // a - 97
       //d -100
+      //q-113
+      //e-101
       switch(event.which)
       {
         case 97:
@@ -483,6 +485,14 @@ buildTable()
               moveFigureDown(board,figure,left_corner);
               reDrawPoligon(board,left_corner_for_redrawing,right_corner_for_redrawing);
           }
+          break;
+        case 113:
+          boardWithoutCurrentFigure(board,figure,left_corner);
+          figure=rotateLeft(figure);
+          inject_figure(board, figure, left_corner);
+          left_corner_for_redrawing=left_corner
+          right_corner_for_redrawing={i:left_corner.i+figure.length-1,j:left_corner.j+figure[0].length-1}
+          reDrawPoligon(board,left_corner_for_redrawing,right_corner_for_redrawing);
           break;
 
       }
