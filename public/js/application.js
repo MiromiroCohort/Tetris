@@ -396,6 +396,7 @@ $(document).ready(function() {
     {
       for(var j=left_corner.j;j<right_corner.j+1;j++)
       {
+        console.log("i:"+i+" j:"+j+" board"+board[i][j] );
         redrawCell(i,j,board[i][j]);
       }
     }
@@ -438,6 +439,11 @@ buildTable()
   }
    board = game_board();
   reDrawPoligon(board,{i:0,j:0},{i:23,j:10});
+  var figure = [[1,0,0],[1,0,0],[1,1,0]];
+  var left_corner = {i:4-figure.length,j:5}
+  inject_figure(board, figure, left_corner);
+  var right_corner={i:left_corner.i+figure.length-1, j:left_corner.j+figure[0].length-1}
+  reDrawPoligon(board,left_corner,right_corner)
 
   $(document).keypress(function()
     {
@@ -450,6 +456,13 @@ buildTable()
       {
         case 97:
           console.log("left");
+          if(isMoveLeftDownPossible(board,figure,left_corner))
+            {
+              left_corner_for_redrawing={i:left_corner.i,j:left_corner.j-1}
+              right_corner_for_redrawing={i:left_corner.i+figure.length,j:left_corner.j+figure[0].length}
+              moveFigureLeftDown(board,figure,left_corner);
+              reDrawPoligon(board,left_corner_for_redrawing,right_corner_for_redrawing);
+            }
           break;
         case 100:
           console.log("right");

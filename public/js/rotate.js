@@ -292,7 +292,7 @@ function moveHeapDown(board,free_line, fill_line)
 }
 
 
-var a = [[1,0,0],[1,0,0],[1,1,0]];
+
 
  board = game_board();
 
