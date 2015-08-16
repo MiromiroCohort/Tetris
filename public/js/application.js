@@ -504,14 +504,29 @@ buildTable()
   reDrawPoligon(board,{i:0,j:0},{i:23,j:9});
   var figure =[]
   var left_corner
-   var right_corner
+  var right_corner
+  var interval
   $( document ).ajaxComplete(function( event,request, settings ) {
     figure = figures.shift();
     left_corner = {i:4-figure.length,j:5}
     inject_figure(board, figure, left_corner);
     right_corner ={i:left_corner.i+figure.length-1, j:left_corner.j+figure[0].length-1}
     reDrawPoligon(board,left_corner,right_corner)
+    interval=setInterval(runGame, 4000);
   });
+
+  function runGame()
+  {
+    if(isMovePossible(board,figure,left_corner))
+          {
+            left_corner_for_redrawing={i:left_corner.i,j:left_corner.j}
+              right_corner_for_redrawing={i:left_corner.i+figure.length,j:left_corner.j+figure[0].length-1}
+              moveFigureDown(board,figure,left_corner);
+              reDrawPoligon(board,left_corner_for_redrawing,right_corner_for_redrawing);
+              console.log(left_corner);
+          }
+  }
+
 
   $(document).keypress(function()
     {
@@ -546,14 +561,7 @@ buildTable()
           break;
         case 32:
           console.log("down");
-          if(isMovePossible(board,figure,left_corner))
-          {
-            left_corner_for_redrawing={i:left_corner.i,j:left_corner.j}
-              right_corner_for_redrawing={i:left_corner.i+figure.length,j:left_corner.j+figure[0].length-1}
-              moveFigureDown(board,figure,left_corner);
-              reDrawPoligon(board,left_corner_for_redrawing,right_corner_for_redrawing);
-              console.log(left_corner);
-          }
+          runGame();
           break;
         case 113:
           boardWithoutCurrentFigure(board,figure,left_corner);
