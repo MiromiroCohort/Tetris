@@ -64,6 +64,8 @@ function inject_figure(board,figure,left_corner)
        if(figure[i-left_corner.i][j-left_corner.j] > 0) board[i][j] = figure[i-left_corner.i][j-left_corner.j]
         // console.log(figure)
       }
+      console.log(figure);
+      console.log(i+" i "+board[i])
     }
 }
 
@@ -94,7 +96,12 @@ function moveFigureDown(board,figure,left_corner)
 
       positionFigureDown(figure);
     }
+    console.log(board[23])
+    console.log(board[22])
     inject_figure(board,figure,left_corner)
+    console.log(board[23])
+    console.log(board[22])
+
 
 }
 function isMoveRightDownPossible(board,figure,left_corner)
@@ -302,7 +309,6 @@ $(document).ready(function() {
       datatype: 'json',
       url: '/blocks',
       success: function(blockArray){
-        console.log(blockArray)
         blockGenerator(blockArray);
         // return blockArray;
       }
@@ -310,15 +316,9 @@ $(document).ready(function() {
   };
 
   function blockGenerator(blockArray){
-    console.log("Generator receives" + blockArray)
     var arrayLength = blockArray.length;
-    console.log(arrayLength)
     for (var i = 0; i < arrayLength; i++) {
-
       var colour = Math.floor((Math.random() * 8) + 1);
-
-      console.log(blockArray[i]);
-
       switch(blockArray[i]){
         case "Z":
           blockReceiver([[1,1,0],[0,1,1],[0,0,0]])
@@ -343,7 +343,6 @@ $(document).ready(function() {
         break;
       }
     }
-    console.log("All blocks have been sent to Eugene's enigma")
 
   }
 
@@ -450,7 +449,6 @@ $(document).ready(function() {
     {
       for(var j=left_corner.j;j<right_corner.j+1;j++)
       {
-        console.log("i:"+i+" j:"+j+" board"+board[i][j] );
         redrawCell(i,j,board[i][j]);
       }
     }
@@ -526,8 +524,10 @@ buildTable()
             left_corner_for_redrawing={i:left_corner.i,j:left_corner.j}
               right_corner_for_redrawing={i:left_corner.i+figure.length,j:left_corner.j+figure[0].length-1}
               moveFigureDown(board,figure,left_corner);
+              // console.log(board[23])
+              // console.log(board[22])
               reDrawPoligon(board,left_corner_for_redrawing,right_corner_for_redrawing);
-              console.log(left_corner);
+              // console.log(left_corn  er);
           }
     else
     {
@@ -539,8 +539,8 @@ buildTable()
 
   $(document).keypress(function()
     {
-      console.log("key pressed");
-      console.log(event.which)
+      // console.log("key pressed");
+      // console.log(event.which)
       // 32 - space
       // a - 97
       //d -100
