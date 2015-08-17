@@ -64,8 +64,8 @@ function inject_figure(board,figure,left_corner)
        if(figure[i-left_corner.i][j-left_corner.j] > 0) board[i][j] = figure[i-left_corner.i][j-left_corner.j]
         // console.log(figure)
       }
-      console.log(figure);
-      console.log(i+" i "+board[i])
+      // console.log(figure);
+      // console.log(i+" i "+board[i])
     }
 }
 
@@ -96,11 +96,8 @@ function moveFigureDown(board,figure,left_corner)
 
       positionFigureDown(figure);
     }
-    console.log(board[23])
-    console.log(board[22])
+
     inject_figure(board,figure,left_corner)
-    console.log(board[23])
-    console.log(board[22])
 
 
 }
@@ -453,6 +450,10 @@ $(document).ready(function() {
       }
     }
   }
+  function drawScore(score)
+  {
+    $(".centered-text").html("Your Score: "+score);
+  }
 
 
   // drawByJquery("i", 22, 8, "purple");
@@ -504,6 +505,7 @@ buildTable()
   var left_corner
   var right_corner
   var interval
+  var score=0;
   function injectTop()
   {
     figure = figures.shift();
@@ -514,7 +516,7 @@ buildTable()
     injectTop();
     right_corner ={i:left_corner.i+figure.length-1, j:left_corner.j+figure[0].length-1}
     reDrawPoligon(board,left_corner,right_corner)
-    interval=setInterval(runGame, 4000);
+    interval=setInterval(runGame, 1000);
   });
 
   function runGame()
@@ -535,10 +537,10 @@ buildTable()
 
       if (free_line >4 )
       {
-        console.log(free_line)
+        // console.log(free_line)
         var fill_line=isAnyLineFilled(board)
-        console.log(fill_line);
-        Score_to_add=0
+        // console.log(fill_line);
+        score_to_add=0
         while (fill_line>0)
         {
           moveHeapDown(board,free_line,fill_line);
@@ -546,14 +548,18 @@ buildTable()
           right_corner_for_redrawing={i:fill_line,j:9}
           reDrawPoligon(board,left_corner_for_redrawing,right_corner_for_redrawing);
           fill_line=isAnyLineFilled(board);
-          Score_to_add+=100;
+          score_to_add+=100;
         }
-        if (figure.length > 0)
+        score+=score_to_add
+        if (    score_to_add > 0) drawScore(score);
+          console.log("score:"+score)
+        if (figures.length > 0 )
         {
           injectTop();
         }
         else
         {
+          clearInterval(interval);
           getBlocks();
         }
       }
