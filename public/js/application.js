@@ -531,8 +531,32 @@ buildTable()
           }
     else
     {
-      injectTop();
+      var free_line=findLowestFreeLine(board)
 
+      if (free_line >4 )
+      {
+        console.log(free_line)
+        var fill_line=isAnyLineFilled(board)
+        console.log(fill_line);
+        Score_to_add=0
+        while (fill_line>0)
+        {
+          moveHeapDown(board,free_line,fill_line);
+          left_corner_for_redrawing={i:free_line,j:0}
+          right_corner_for_redrawing={i:fill_line,j:9}
+          reDrawPoligon(board,left_corner_for_redrawing,right_corner_for_redrawing);
+          fill_line=isAnyLineFilled(board);
+          Score_to_add+=100;
+        }
+        if (figure.length > 0)
+        {
+          injectTop();
+        }
+        else
+        {
+          getBlocks();
+        }
+      }
     }
   }
 
