@@ -467,6 +467,7 @@ $(document).ready(function() {
   // drawByJquery("o", 18, 5, "orange");
 
   function buildTable() {
+     $("#board").append("<button class='play-button' type='submit'>Play</button>")
     var thisString = ""
     thisString += "<div class=\"masthead\"><div class=\"centered-text\">Your Score</div></div><div class=\"gameboard\">"
     for (var i=0; i<24; i++){
@@ -478,7 +479,7 @@ $(document).ready(function() {
     }
     thisString+="</div></div>"
     $("#board").append(thisString)
-    $("#board").append("<button class='play-button' type='submit'>Play</button>")
+
   }
 
 buildTable()
@@ -581,6 +582,12 @@ buildTable()
           interval = null;
           getBlocks();
         }
+      }
+      else
+      {
+        clearInterval(interval);
+          interval = null;
+          alert("Game over...")
       }
     }
   }
