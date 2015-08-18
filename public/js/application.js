@@ -559,8 +559,10 @@ buildTable()
         }
         else
         {
+          console.log("asking for a block")
+          console.log(figures)
           clearInterval(interval);
-          getBlocks();
+          getBlocks().done;
         }
       }
     }
