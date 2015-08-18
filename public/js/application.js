@@ -467,9 +467,9 @@ $(document).ready(function() {
   // drawByJquery("o", 18, 5, "orange");
 
   function buildTable() {
-     $("#board").append("<button class='play-button' type='submit'>Play</button>")
+     // $("#board").append("<button class='play-button' type='submit'>Play</button>")
     var thisString = ""
-    thisString += "<div class=\"masthead\"><div class=\"centered-text\">Your Score</div></div><div class=\"gameboard\">"
+    thisString += "<div class=\"gameboard\">"
     for (var i=0; i<24; i++){
       thisString += "<div class=\"row\" id=\"row-"+i+"\">"
       for (var j=0; j<10; j++) {
