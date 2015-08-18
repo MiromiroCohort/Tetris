@@ -307,6 +307,7 @@ $(document).ready(function() {
       url: '/blocks',
       success: function(blockArray){
         blockGenerator(blockArray);
+        newBlocks();
         // return blockArray;
       }
     })
@@ -499,6 +500,17 @@ buildTable()
     figures.push(block);
   }
 
+ function newBlocks()
+  {
+    // injectTop();
+    // right_corner ={i:left_corner.i+figure.length-1, j:left_corner.j+figure[0].length-1}
+    // reDrawPoligon(board,left_corner,right_corner)
+    // console.log(interval);
+
+    interval=setInterval(runGame, 1000);
+    // console.log(interval);
+  }
+
   board = game_board();
   reDrawPoligon(board,{i:0,j:0},{i:23,j:9});
   var figure =[]
@@ -508,20 +520,23 @@ buildTable()
   var score=0;
   function injectTop()
   {
+
     figure = figures.shift();
     left_corner = {i:4-figure.length,j:5}
     inject_figure(board, figure, left_corner);
   }
-  $( document ).ajaxComplete(function( event,request, settings ) {
-    injectTop();
-    right_corner ={i:left_corner.i+figure.length-1, j:left_corner.j+figure[0].length-1}
-    reDrawPoligon(board,left_corner,right_corner)
-    interval=setInterval(runGame, 1000);
-  });
+  // $( document ).ajaxComplete(function( event,request, settings ) {
+  //   injectTop();
+  //   right_corner ={i:left_corner.i+figure.length-1, j:left_corner.j+figure[0].length-1}
+  //   reDrawPoligon(board,left_corner,right_corner)
+  //   interval=setInterval(runGame, 1000);
+  // });
 
   function runGame()
   {
-    if(isMovePossible(board,figure,left_corner))
+     if (figure.length == 0) injectTop();
+    console.log("continues");
+    if ((figure.length >0)&isMovePossible(board,figure,left_corner))
           {
             left_corner_for_redrawing={i:left_corner.i,j:left_corner.j}
               right_corner_for_redrawing={i:left_corner.i+figure.length,j:left_corner.j+figure[0].length-1}
@@ -554,15 +569,17 @@ buildTable()
         if (    score_to_add > 0) drawScore(score);
           console.log("score:"+score)
         if (figures.length > 0 )
+          // &(figures.length<19))
         {
-          injectTop();
+          figure=[]
         }
         else
         {
           console.log("asking for a block")
           console.log(figures)
           clearInterval(interval);
-          getBlocks().done;
+          interval = null;
+          getBlocks();
         }
       }
     }
