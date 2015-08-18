@@ -8,6 +8,9 @@ html {
 
 body {
   height: 80vh;
+  text-align: center;
+  margin: auto;
+
 }
 
 .masthead {
@@ -53,27 +56,27 @@ div {
 
 /*board definitions*/
 .gameboard {
-  position:fixed;
+  /*position:fixed;*/
   margin: 0 auto;
-  position:absolute;
+  /*position:absolute;*/
   z-index: 1;
   top:0;
-  right:0;
-  bottom:0;
+ /* right:0;
+  bottom:0;*/
   left:0;
   max-width: 60vh;
   background: -webkit-linear-gradient(top, #001D55, #132132) no-repeat;
   background: -o-linear-gradient(top, #001D55, #132132) no-repeat; /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(top, #001D55, #132132) no-repeat; /* For Firefox 3.6 to 15 */
   background: linear-gradient(top, #001D55, #132132) no-repeat; /* Standard syntax */
-  height: 80vh;
+  /*height: 72vh;*/
   border: solid 5px black;
-  height: 100%;
+ /* height: 100%;*/
   font-size:0px;
 }
 
 .row {
-  width: 95%;
+  /*width: 95%;*/
   display: block;
   line-height: 0px;
   padding: 0px;
@@ -89,16 +92,17 @@ div {
 }*/
 
 .cell {
-  width:09%;
+  width:10%;
   /*border: solid 1px black;*/*/
   border: 0;
   display: inline-block;
-  padding: .9em;
-  margin:0px;outline:none;
+  padding: 1vh;
+  margin:0px;
+  /*outline:none;*/
   vertical-align: top;
   border-spacing: 0;
-  font-size:16px;
-  line-height:14px;
+  font-size:2vh;
+  line-height:2vh;
 }
 
 .cell.red {
