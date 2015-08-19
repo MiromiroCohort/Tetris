@@ -666,6 +666,7 @@ buildTable()
 
   $(".play-button").on("click", function(event) {
     event.preventDefault();
+    $(event.currentTarget).blur();
     board = game_board();
     clearInterval(interval);
     interval=0;
