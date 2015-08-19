@@ -76,9 +76,18 @@ function isMovePossible(board,figure,left_corner)
      {
       return false;
      }
+
      for(j=left_corner.j;j<left_corner.j+figure[i-left_corner.i-1].length;j++)
      {
        if ((board[i][j] > 0) & (figure[i-1-left_corner.i][j-left_corner.j] > 0)) return false;
+     }
+     i=left_corner.i+figure.length-1;
+     for (i=left_corner.i+figure.length-2;i < left_corner.i+figure.length;i++)
+     {
+       for(j=left_corner.j;j<left_corner.j+figure[i-left_corner.i-1].length;j++)
+       {
+         if ((board[i][j] > 0) & (figure[i-1-left_corner.i][j-left_corner.j] > 0)& (figure[i-left_corner.i][j-left_corner.j] == 0)) return false;
+       }
      }
      return true;
 }
@@ -337,7 +346,7 @@ $(document).ready(function() {
           blockReceiver([[0,1,1],[1,1,0],[0,0,0]])
         break;
         case "I":
-          blockReceiver([[0,1,0],[0,1,0],[0,1,0]])
+          blockReceiver([[0,1,0,0],[0,1,0,0],[0,1,0,0],[0,1,0,0]])
         break;
       }
     }
@@ -493,9 +502,10 @@ buildTable()
       }
     }
   }
-  figures=[]
+  figures = []
+  var interval = 0;
 
-  getBlocks();
+
   function blockReceiver(block)
   {
     figures.push(block);
@@ -506,10 +516,13 @@ buildTable()
     // injectTop();
     // right_corner ={i:left_corner.i+figure.length-1, j:left_corner.j+figure[0].length-1}
     // reDrawPoligon(board,left_corner,right_corner)
-    // console.log(interval);
+     console.log(interval);
 
-    interval=setInterval(runGame, 1000);
-    // console.log(interval);
+    if (interval == 0)
+    {
+      interval=setInterval(runGame, 1000);
+      console.log(interval);
+    }
   }
 
   board = game_board();
@@ -517,7 +530,7 @@ buildTable()
   var figure =[]
   var left_corner
   var right_corner
-  var interval
+
   var score=0;
   function injectTop()
   {
@@ -536,7 +549,7 @@ buildTable()
   function runGame()
   {
      if (figure.length == 0) injectTop();
-    console.log("continues");
+    // console.log("continues");
     if ((figure.length >0)&isMovePossible(board,figure,left_corner))
           {
             left_corner_for_redrawing={i:left_corner.i,j:left_corner.j}
@@ -568,7 +581,7 @@ buildTable()
         }
         score+=score_to_add
         if (    score_to_add > 0) drawScore(score);
-          console.log("score:"+score)
+          // console.log("score:"+score)
         if (figures.length > 0 )
           // &(figures.length<19))
         {
@@ -577,17 +590,19 @@ buildTable()
         else
         {
           console.log("asking for a block")
-          console.log(figures)
+          console.log(interval)
           clearInterval(interval);
-          interval = null;
+          interval = 0;
+          console.log(interval)
           getBlocks();
         }
       }
       else
       {
         clearInterval(interval);
-          interval = null;
-          alert("Game over...")
+          // interval = null;
+          if (interval !=0) alert("Game over...")
+            interval=0;
       }
     }
   }
@@ -605,7 +620,7 @@ buildTable()
       switch(event.which)
       {
         case 97:
-          console.log("left");
+          // console.log("left");
           if(isMoveLeftDownPossible(board,figure,left_corner))
             {
               left_corner_for_redrawing={i:left_corner.i,j:left_corner.j-1}
@@ -615,7 +630,7 @@ buildTable()
             }
           break;
         case 100:
-          console.log("right");
+          // console.log("right");
           if(isMoveRightDownPossible(board,figure,left_corner))
           {
              left_corner_for_redrawing={i:left_corner.i,j:left_corner.j}
@@ -625,7 +640,7 @@ buildTable()
           }
           break;
         case 32:
-          console.log("down");
+          // console.log("down");
           runGame();
           break;
         case 113:
@@ -650,19 +665,12 @@ buildTable()
     });
 
   $(".play-button").on("click", function(event) {
-    event.preventDefault()
-    $.ajax({
-      url: "/blocks",
-      type: "GET",
-      datatype: "json"
-    })
-    .success(function(data){
-      // Start function from game mechanics
-      getBlocks();
-    })
-    .fail(function(){
-      alert("fail")
-    })
+    event.preventDefault();
+    board = game_board();
+    clearInterval(interval);
+    interval=0;
+    reDrawPoligon(board,{i:0,j:0},{i:23,j:9});
+    getBlocks();
   })
 });
 
